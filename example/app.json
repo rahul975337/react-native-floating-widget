@@ -22,8 +22,6 @@
       },
       "package": "expo.modules.floatingwidget.example"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+   "plugins": [["../app.plugin.js", { "resourcesPath": ["./assets//favicon.png"] }]]
   }
 }
