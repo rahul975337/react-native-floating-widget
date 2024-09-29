@@ -1,5 +1,6 @@
 package expo.modules.floatingwidget
 
+import android.annotation.SuppressLint
 import android.app.Service
 import android.content.Intent
 import android.content.IntentFilter
@@ -58,6 +59,7 @@ class WidgetService : Service() {
         WidgetReceiver.unregisterReceiver(this)
     }
 
+    @SuppressLint("InflateParams")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initializeWidgetView() {
         widgetView = LayoutInflater.from(this).inflate(R.layout.layout_widget, null)
@@ -88,6 +90,7 @@ class WidgetService : Service() {
                 private var initialY = 0
                 private var initialTouchY = 0f
 
+                @SuppressLint("ClickableViewAccessibility")
                 override fun onTouch(v: View, event: MotionEvent): Boolean {
                     when (event.action) {
                         MotionEvent.ACTION_DOWN -> {

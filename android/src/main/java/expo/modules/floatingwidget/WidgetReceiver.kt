@@ -14,7 +14,7 @@ class WidgetReceiver private constructor() : BroadcastReceiver() {
         private var isRegistered = false
         private const val TAG = "CUSTOM_LOG"
 
-        fun getInstance(): WidgetReceiver {
+        private fun getInstance(): WidgetReceiver {
             if (instance == null) {
                 instance = WidgetReceiver()
                 Log.d(TAG, "GetWidgetReceiver instance created")
@@ -28,8 +28,10 @@ class WidgetReceiver private constructor() : BroadcastReceiver() {
             try {
                 if (!isRegistered) {
                     isRegistered = true
-                    context.registerReceiver(getInstance(), intentFilter,
-                        Context.RECEIVER_EXPORTED)
+                    context.registerReceiver(
+                        getInstance(), intentFilter,
+                        Context.RECEIVER_EXPORTED
+                    )
                     Log.d(TAG, "Receiver registered")
                 }
             } catch (e: Exception) {
