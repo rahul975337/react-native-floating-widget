@@ -1,30 +1,29 @@
-import React, { useEffect } from "react";
-import { AppState, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Button, StyleSheet, View } from "react-native";
 import * as ReactNativeFloatingWidget from "react-native-floating-widget";
 
 export default function App() {
-  useEffect(() => {
-    ReactNativeFloatingWidget.requestPermissionAsync().then((result) => {
-      console.log("Widget permission result", result);
-    });
-  }, []);
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", (nextAppState) => {
-      console.log("AppState changed to", nextAppState);
-
-      if (nextAppState === "active") {
-        console.log("App has come to foreground");
-        ReactNativeFloatingWidget.stop();
-      } else if (nextAppState === "background") {
-        console.log("App has come to background");
-        ReactNativeFloatingWidget.start();
-      }
-    });
-    return () => subscription.remove();
-  }, []);
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Button
+        title="Check Permission"
+        onPress={() =>
+          ReactNativeFloatingWidget.checkPermissionAsync()
+            .then(console.log)
+            .catch(console.log)
+        }
+      />
+      <Button
+        title="Open Permission"
+        onPress={() => {
+          ReactNativeFloatingWidget.requestPermissionAsync()
+            .then(console.log)
+            .catch(console.log);
+        }}
+      />
+
+      <Button title="Start" onPress={() => ReactNativeFloatingWidget.start()} />
+      <Button title="Stop" onPress={() => ReactNativeFloatingWidget.stop()} />
     </View>
   );
 }
@@ -34,6 +33,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
   },
 });
