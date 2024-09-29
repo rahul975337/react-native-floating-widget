@@ -10,9 +10,15 @@ import androidx.annotation.RequiresApi
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 
+object Constants {
+    const val BROADCAST_ACTION = "expo.modules.reactnative.floatingwidget.BROADCAST_ACTION"
+    const val MAX_CLICK_DURATION = 200
+    const val TAG = "CUSTOM_LOG"
+}
+
 class ReactNativeFloatingWidgetModule : Module() {
 
-    private val TAG = "CUSTOM_LOG"
+
     private val reactContext get() = requireNotNull(appContext.reactContext)
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -54,11 +60,11 @@ class ReactNativeFloatingWidgetModule : Module() {
         if (!checkPermissionAsync()) return false
         WidgetReceiver.registerReceiver(reactContext, IntentFilter(Constants.BROADCAST_ACTION))
         try {
-            Log.d(TAG, "Starting the service")
+            Log.d(Constants.TAG, "Starting the service")
             val startIntent = Intent(reactContext, WidgetService::class.java)
             reactContext.startService(startIntent)
         } catch (e: Exception) {
-            Log.e(TAG, "Error starting service: ${e.message}")
+            Log.e(Constants.TAG, "Error starting service: ${e.message}")
             return false
         }
         return true
@@ -67,11 +73,11 @@ class ReactNativeFloatingWidgetModule : Module() {
     private fun stop(): Boolean {
         if (!checkPermissionAsync()) return false
         try {
-            Log.d(TAG, "Stopping the service")
+            Log.d(Constants.TAG, "Stopping the service")
             val stopIntent = Intent(reactContext, WidgetService::class.java)
             reactContext.stopService(stopIntent)
         } catch (e: Exception) {
-            Log.e(TAG, "Error starting service: ${e.message}")
+            Log.e(Constants.TAG, "Error starting service: ${e.message}")
             return false
         }
 

@@ -1,15 +1,27 @@
-import { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { AppState, StyleSheet, Text, View } from "react-native";
 import * as ReactNativeFloatingWidget from "react-native-floating-widget";
 
 export default function App() {
   useEffect(() => {
-    ReactNativeFloatingWidget.checkPermissionAsync().then((result) => {
-      console.log("Permission result:", result);
+    ReactNativeFloatingWidget.requestPermissionAsync().then((result) => {
+      console.log("Widget permission result", result);
     });
-    console.log("Widget stop result", ReactNativeFloatingWidget.stop());
   }, []);
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (nextAppState) => {
+      console.log("AppState changed to", nextAppState);
 
+      if (nextAppState === "active") {
+        console.log("App has come to foreground");
+        ReactNativeFloatingWidget.stop();
+      } else if (nextAppState === "background") {
+        console.log("App has come to background");
+        ReactNativeFloatingWidget.start();
+      }
+    });
+    return () => subscription.remove();
+  }, []);
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>

@@ -18,10 +18,6 @@ import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import java.util.Calendar
 
-object Constants {
-    const val BROADCAST_ACTION = "expo.modules.reactnative.floatingwidget.BROADCAST_ACTION"
-    const val MAX_CLICK_DURATION = 200
-}
 
 class WidgetService : Service() {
 
@@ -29,7 +25,6 @@ class WidgetService : Service() {
     private var widgetView: View? = null
     private var orientationEventListener: OrientationEventListener? = null
     private var startClickTime: Long = 0
-    private val TAG = "CUSTOM_LOG"
 
     override fun onBind(intent: Intent): IBinder? {
         return null

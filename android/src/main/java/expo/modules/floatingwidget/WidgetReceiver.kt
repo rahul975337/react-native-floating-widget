@@ -12,12 +12,11 @@ class WidgetReceiver private constructor() : BroadcastReceiver() {
     companion object {
         private var instance: WidgetReceiver? = null
         private var isRegistered = false
-        private const val TAG = "CUSTOM_LOG"
 
         private fun getInstance(): WidgetReceiver {
             if (instance == null) {
                 instance = WidgetReceiver()
-                Log.d(TAG, "GetWidgetReceiver instance created")
+                Log.d(Constants.TAG, "GetWidgetReceiver instance created")
             }
             return instance!!
         }
@@ -29,13 +28,12 @@ class WidgetReceiver private constructor() : BroadcastReceiver() {
                 if (!isRegistered) {
                     isRegistered = true
                     context.registerReceiver(
-                        getInstance(), intentFilter,
-                        Context.RECEIVER_EXPORTED
+                        getInstance(), intentFilter, Context.RECEIVER_EXPORTED
                     )
-                    Log.d(TAG, "Receiver registered")
+                    Log.d(Constants.TAG, "Receiver registered")
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Error registering receiver: ${e.message}")
+                Log.e(Constants.TAG, "Error registering receiver: ${e.message}")
             }
         }
 
@@ -45,16 +43,16 @@ class WidgetReceiver private constructor() : BroadcastReceiver() {
                 if (isRegistered) {
                     context.unregisterReceiver(getInstance())
                     isRegistered = false
-                    Log.d(TAG, "Receiver removed")
+                    Log.d(Constants.TAG, "Receiver removed")
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Error unregistering receiver: ${e.message}")
+                Log.e(Constants.TAG, "Error unregistering receiver: ${e.message}")
             }
         }
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        Log.d(TAG, "onReceive called")
+        Log.d(Constants.TAG, "onReceive called")
         val packageName = context.packageName
         val packageManager = context.packageManager
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
