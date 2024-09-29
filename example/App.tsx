@@ -1,6 +1,11 @@
 import React from "react";
-import { Button, StyleSheet, View } from "react-native";
-import * as ReactNativeFloatingWidget from "react-native-floating-widget";
+import { StyleSheet, View, Button } from "react-native";
+import {
+  checkPermissionAsync,
+  requestPermissionAsync,
+  start,
+  stop,
+} from "react-native-floating-widget";
 
 export default function App() {
   return (
@@ -8,22 +13,17 @@ export default function App() {
       <Button
         title="Check Permission"
         onPress={() =>
-          ReactNativeFloatingWidget.checkPermissionAsync()
-            .then(console.log)
-            .catch(console.log)
+          checkPermissionAsync().then(console.log).catch(console.log)
         }
       />
       <Button
         title="Open Permission"
         onPress={() => {
-          ReactNativeFloatingWidget.requestPermissionAsync()
-            .then(console.log)
-            .catch(console.log);
+          requestPermissionAsync().then(console.log).catch(console.log);
         }}
       />
-
-      <Button title="Start" onPress={() => ReactNativeFloatingWidget.start()} />
-      <Button title="Stop" onPress={() => ReactNativeFloatingWidget.stop()} />
+      <Button title="Start" onPress={() => start()} />
+      <Button title="Stop" onPress={() => stop()} />
     </View>
   );
 }
