@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "react-native-floating-widget": ["../src/index"],
+      "react-native-floating-widget/*": ["../src/*"]
+    }
+  }
+}

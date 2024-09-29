@@ -1,0 +1,42 @@
+{
+  "name": "react-native-floating-widget",
+  "version": "0.1.0",
+  "description": "This is a floating widget module",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module",
+    "open:ios": "xed example/ios",
+    "open:android": "open -a \"Android Studio\" example/android"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "react-native-floating-widget",
+    "ReactNativeFloatingWidget"
+  ],
+  "repository": "https://github.com/rahul975337/react-native-floating-widget",
+  "bugs": {
+    "url": "https://github.com/rahul975337/react-native-floating-widget/issues"
+  },
+  "author": "Rahul Tilwani <tilwani03@gmail.com> (https://github.com/rahul975337)",
+  "license": "MIT",
+  "homepage": "https://github.com/rahul975337/react-native-floating-widget#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "expo-module-scripts": "^3.5.2",
+    "expo-modules-core": "^1.12.24"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
