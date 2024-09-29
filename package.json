@@ -1,6 +1,6 @@
 {
   "name": "react-native-floating-widget",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "This is a floating widget module",
   "main": "build/index.js",
   "types": "build/index.d.ts",
