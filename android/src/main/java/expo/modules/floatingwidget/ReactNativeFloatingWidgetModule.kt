@@ -26,7 +26,7 @@ class ReactNativeFloatingWidgetModule : Module() {
         Name("ReactNativeFloatingWidget")
 
         AsyncFunction("checkPermissionAsync") {
-            return@AsyncFunction true
+            return@AsyncFunction checkPermissionAsync()
         }
 
         AsyncFunction("requestPermissionAsync") {
